@@ -1,0 +1,415 @@
+/* ==========================================================
+   PERSONALIZACIÓN MARVELOUS - TFG
+   ========================================================== */
+
+/* 1. CORTINA DE BIENVENIDA (SPLASH) */
+.splash-screen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: #000000 !important; /* Negro puro */
+  
+  /* Subimos el z-index al máximo posible */
+  z-index: 99999999 !important; 
+  
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.splash-content {
+  text-align: center;
+  width: 280px !important; /* Tamaño fijo como la original */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  z-index: 100000000 !important;
+}
+
+.splash-logo {
+  width: 280px !important;  /* Tamaño fijo para que no explote */
+  max-width: 80% !important; /* Para que en móviles no se salga */
+  height: auto !important;
+  filter: drop-shadow(0 0 15px rgba(255, 88, 88, 0.3));
+  animation: marvelPulse 2s infinite ease-in-out;
+  display: block;           /* Evita espacios fantasmas debajo de la imagen */
+  margin: 0 auto;           /* Centrado clásico extra */
+}
+
+
+.splash-text {
+  color: #FF5858 !important;
+  letter-spacing: 3px !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  margin-top: 15px !important;
+  font-family: 'Inter', sans-serif !important;
+  /* Anulamos cualquier recorte de la plantilla */
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+@keyframes marvelPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.splash-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-100%); /* Efecto persiana hacia arriba */
+}
+
+/* 2. AJUSTES DEL LOGO EN EL HEADER */
+.header .logo img {
+  max-height: 60px !important; /* Más grande como pediste */
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+/* 3. CORRECCIÓN DE TARJETAS Y BIOGRAFÍAS (CARD FIX) */
+.gallery .gallery-item {
+  position: relative !important; /* Necesario para que el botón se "pegue" aquí */
+  padding-bottom: 60px !important; /* Dejamos un hueco fijo abajo para el botón */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #161718;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gallery .gallery-item p {
+  white-space: normal !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limitamos a 3 líneas para asegurar espacio */
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  line-height: 1.4 !important;
+  margin: 10px 15px !important;
+  font-size: 0.85rem;
+}
+
+/* FORZAMOS EL BOTÓN A APARECER ABAJO */
+.gallery .gallery-item .btn-visit,
+.gallery .gallery-item .cta-btn,
+.gallery .gallery-links a {
+  position: absolute !important;
+  bottom: 15px !important; /* A 15px del borde inferior */
+  left: 15px !important;
+  right: 15px !important;
+  display: block !important;
+  text-align: center;
+  margin: 0 !important;
+  padding: 8px 0 !important;
+  background-color: #FF5858 !important;
+  color: white !important;
+  z-index: 10;
+}
+
+/* ESTILOS DEL MODAL MARVEL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000000;
+  padding: 20px;
+}
+
+.modal-content-marvel {
+  background: #1a1a1a;
+  color: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  position: relative;
+  border: 1px solid #FF5858;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-body-marvel {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-img {
+  flex: 1;
+  min-width: 300px;
+}
+
+.modal-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-info {
+  flex: 1;
+  padding: 30px;
+  min-width: 300px;
+}
+
+.modal-info h2 {
+  color: #FF5858;
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.modal-info p {
+  /* Anulamos el recorte de líneas de las cards */
+  display: block !important; 
+  -webkit-line-clamp: unset !important; 
+  overflow: visible !important;
+  white-space: normal !important;
+  
+  /* Mejoramos la lectura */
+  line-height: 1.6 !important;
+  font-size: 1rem !important;
+  color: #e0e0e0 !important;
+  margin-bottom: 15px !important;
+  text-align: left;
+}
+
+/* Si la bio de Comic Vine trae HTML (negritas, enlaces, etc.) */
+.modal-info div {
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+/* Ajuste para que el modal sea scrollable si el texto es larguísimo */
+.modal-content-marvel {
+  max-height: 90vh; /* Que no se salga de la pantalla */
+  overflow-y: auto; /* Si el texto es largo, aparece scroll interno */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* BOTÓN DE FAVORITO SOBRE LA CARD */
+.btn-fav {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 5; /* Por encima de la imagen */
+}
+
+.btn-fav:hover {
+  transform: scale(1.2);
+  background: rgba(255, 88, 88, 0.8);
+}
+
+.btn-fav.active {
+  color: #FF5858;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* CONTENEDOR DE NOTIFICACIONES */
+.toast-container {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* LA NOTIFICACIÓN */
+.marvel-toast {
+  background: rgba(20, 20, 20, 0.95);
+  color: white;
+  padding: 15px 25px;
+  border-left: 5px solid #FF5858;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  animation: slideInRight 0.4s ease forwards, fadeOut 0.5s ease 2.5s forwards;
+  pointer-events: auto;
+  min-width: 300px;
+}
+
+.marvel-toast i {
+  color: #FF5858;
+  font-size: 1.4rem;
+}
+
+/* ANIMACIONES */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+/* Arreglo para el Navbar */
+#navbar a {
+    /* Quitamos el !important del color para que React pueda cambiarlo */
+    color: white; 
+    font-size: 14px !important;
+    text-decoration: none !important;
+    transition: 0.3s;
+}
+
+/* Forzamos que la clase .active (la que pone React) sea naranja/roja */
+#navbar a.active {
+    color: #ED1D24 !important; 
+    font-weight: bold !important;
+}
+
+/* También por si acaso la plantilla usa la clase 'active' en el <li> */
+#navbar li a.active {
+    color: #ED1D24 !important;
+}
+
+/* --- ESTILOS DEL HALL OF FAME STARK --- */
+
+.hall-of-fame-container {
+    background: linear-gradient(180deg, rgba(255, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    border-top: 2px solid #ff0000;
+    border-radius: 30px;
+    padding: 120px 40px 60px 40px;
+    margin-top: 0 !important;
+    text-align: center;
+    box-shadow: 0 -20px 50px -20px rgba(255, 0, 0, 0.2);
+    position: relative; 
+    width: 100%;
+}
+
+.stark-title-glow {
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-weight: 900;
+    /* Efecto Neón Rojo */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.4);
+    animation: stark-pulse 3s infinite ease-in-out;
+}
+
+.omega-subtitle {
+    color: #ffc107; /* Dorado Stark */
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.omega-subtitle span {
+    border-top: 1px solid rgba(255, 193, 7, 0.5);
+    border-bottom: 1px solid rgba(255, 193, 7, 0.5);
+    padding: 5px 15px;
+}
+
+/* Animación de pulso para el reactor ARK */
+@keyframes stark-pulse {
+    0% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); transform: scale(1); }
+    50% { text-shadow: 0 0 25px rgba(255, 0, 0, 1), 0 0 40px rgba(255, 0, 0, 0.6); transform: scale(1.02); }
+    100% { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); transform: scale(1); }
+}
+
+/* Corazón brillante */
+
+.btn-fav {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+    
+    /* El "círculo" blanco de fondo */
+    background: rgba(255, 255, 255, 0.2); /* Blanco semitransparente */
+    backdrop-filter: blur(5px);           /* Efecto cristal */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;                  /* Esto lo hace redondo */
+    
+    /* Centrado del icono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-fav:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+/* Cuando está activo (corazón rojo) podemos darle un brillo extra */
+.btn-fav.active {
+    background: rgba(255, 255, 255, 0.9); /* Fondo más sólido cuando es favorito */
+}
+
+/* estilo tarjetas buscador */
+.btn-category {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-width: 1px;
+    background: #1a1a1a;
+    min-height: 80px; /* Altura más contenida */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-category:hover {
+    transform: translateY(-5px);
+    background: #252525;
+    border-color: inherit; /* Mantiene el color del borde original */
+}
+
+.btn-category i {
+    font-size: 1.4rem; /* Iconos un poco más pequeños */
+}
+
+.btn-category span {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}

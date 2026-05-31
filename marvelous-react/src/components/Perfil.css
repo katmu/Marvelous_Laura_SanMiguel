@@ -1,0 +1,134 @@
+/* ======= CONTENEDOR PRINCIPAL ======= */
+.profile-container {
+  animation: fadeIn 0.8s ease;
+}
+
+/* ======= TARJETA DE EXPEDIENTE (CABECERA) ======= */
+.profile-card {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border: 1px solid #333;
+  border-left: 5px solid #FF5858;
+  border-radius: 8px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Añadimos un sutil efecto de escaneo a la tarjeta principal */
+.profile-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 88, 88, 0.2);
+  animation: scanline 4s linear infinite;
+}
+
+.avatar-wrapper {
+  background: #222;
+  padding: 15px;
+  border-radius: 50%;
+  border: 2px dashed #FF5858;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar {
+  max-height: 80px;
+  filter: drop-shadow(0 0 10px rgba(255, 88, 88, 0.5));
+}
+
+/* ======= MINI CARTAS DE FAVORITOS (ACTIVOS RECLUTADOS) ======= */
+.fav-mini-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(20, 20, 20, 0.8) !important;
+  border: 1px solid #444 !important;
+  position: relative;
+}
+
+.fav-mini-card:hover {
+  transform: translateY(-5px);
+  border-color: #FF5858 !important;
+  box-shadow: 0 0 15px rgba(255, 88, 88, 0.3);
+  background: rgba(30, 30, 30, 1) !important;
+}
+
+/* Estilo para los iconos de tipo (Héroe/Cómic) */
+.fav-mini-card i.fs-2 {
+  transition: transform 0.3s ease;
+}
+
+.fav-mini-card:hover i.fs-2 {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px #FF5858);
+}
+
+/* Botón de papelera dentro de la mini carta */
+.fav-mini-card .btn-link {
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.fav-mini-card .btn-link:hover {
+  opacity: 1;
+  color: #ff0000 !important;
+}
+
+/* ======= TERMINAL DE ACCESO (LOGIN) ======= */
+.stark-terminal {
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid #FF5858;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(255, 88, 88, 0.2);
+  position: relative;
+}
+
+.terminal-header {
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+/* ======= ANIMACIONES ======= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scanline {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Personalización de los inputs en el login para que parezcan de terminal */
+.stark-terminal .form-control:focus {
+  background: rgba(255, 88, 88, 0.05) !important;
+  border-color: #FF5858;
+  box-shadow: 0 0 10px rgba(255, 88, 88, 0.2);
+  color: white;
+}
+
+.fav-mini-card img {
+  filter: grayscale(20%) contrast(110%);
+  border-bottom: 2px solid #FF5858;
+}
+
+.fav-mini-card:hover img {
+  filter: grayscale(0%) contrast(120%);
+}
+
+/* Efecto de marco neón para las fotos */
+.fav-mini-card {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: box-shadow 0.3s ease;
+}
+
+.fav-mini-card:hover {
+  box-shadow: 0 0 20px rgba(255, 88, 88, 0.4);
+}
